@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAttendance", "SchoolAttendance\SchoolAttendance.csproj", "{BF0DAB35-4DC1-4E98-B520-D03A48323B46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAttendance.Tests", "SchoolAttendance.Tests\SchoolAttendance.Tests.csproj", "{01399A37-D62D-4921-BFEF-66572F0FC2FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF0DAB35-4DC1-4E98-B520-D03A48323B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF0DAB35-4DC1-4E98-B520-D03A48323B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF0DAB35-4DC1-4E98-B520-D03A48323B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF0DAB35-4DC1-4E98-B520-D03A48323B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01399A37-D62D-4921-BFEF-66572F0FC2FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01399A37-D62D-4921-BFEF-66572F0FC2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01399A37-D62D-4921-BFEF-66572F0FC2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01399A37-D62D-4921-BFEF-66572F0FC2FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
