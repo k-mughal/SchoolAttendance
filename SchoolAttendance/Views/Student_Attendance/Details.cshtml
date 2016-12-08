@@ -1,0 +1,66 @@
+﻿@model SchoolAttendance.Models.Student_Attendance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student_Attendance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.FristName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.FristName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FristName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FristName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPresent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPresent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Createed_DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Createed_DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModified_DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModified_DateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

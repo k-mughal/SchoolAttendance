@@ -1,0 +1,38 @@
+﻿
+@model  IEnumerable<SchoolAttendance.ViewModel.AttendanceStats>
+
+
+<h3>Attendance Statistics</h3>
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FristName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAttendance01)
+                <br />
+
+                @if (@item.TotalAttendance01 < 1)
+                {
+                    @Html.Label("less than 1")
+                }
+                @if (@item.TotalAttendance01 > 1)
+
+                {
+                    @Html.Label("greater than 1");
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,78 @@
+﻿
+@model  IList<SchoolAttendance.ViewModel.UpdateAttendance>
+<h3>Update Attendance for "@ViewBag.Classname"</h3>
+<h4>Date: @ViewBag.mydate</h4>
+@using (Html.BeginForm("UpdateAttend", "UpdateAttendance", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Label("Student Picture")
+            </th>
+            <th>
+                @Html.Label("ID")
+            </th>
+            <th>
+                @Html.Label("First Name")
+            </th>
+            <th>
+                @Html.Label("Last Name")
+            </th>
+            <th>
+                @Html.Label("Is Present?")
+            </th>
+            <th>
+            </th>
+        </tr>
+        @if (Model != null)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var base64 = @Html.DisplayFor(x => x[i].Image64);
+                            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+                    </td>
+
+                    <td>
+                        @Html.HiddenFor(x => x[i].id, new { id = "HiddenText" })
+
+                        @Html.DisplayFor(x => x[i].StudentID)
+                        @*@Html.HiddenFor(x => x[i].StudentID, new { id = "HiddenText" })*@
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(x => x[i].FristName)
+                        @*@Html.HiddenFor(x => x[i].ClassID, new { id = "HiddenText" })*@
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(x => x[i].LastName)
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(x => x[i].IsPresent)
+                        @Html.HiddenFor(x => x[i].IsPresent, new { id = "HiddenText" })
+                    </td>
+                    @*<td>
+                            @Html.TextBoxFor(x => x[i].Image , new { type = "file", @class = "input-file" })
+                              <input type="file" value="Upload" style="width: 80px; height: 22px; font-size: 1.0em; padding:0" />
+                            <input type="file" name="Image1"  />
+                        </td>*@
+
+                    <td>
+                        <br />
+                    </td>
+                </tr>
+                                }
+
+                            }    </table>
+
+    <div class="col-md-10">
+        <input type="submit" value="Save" />
+    </div>
+
+ }

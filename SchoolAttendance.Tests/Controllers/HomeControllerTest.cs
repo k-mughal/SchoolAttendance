@@ -50,5 +50,18 @@ namespace SchoolAttendance.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+        [TestMethod]
+        public void IndexTest1()
+        {
+            // Arrange
+            Student1Controller controller = new Student1Controller();
+
+            // Act
+            ViewResult result = controller.Index() as ViewResult;
+
+            // Assert
+            Assert.AreEqual ("students", result.ViewName);
+        }
+
     }
 }

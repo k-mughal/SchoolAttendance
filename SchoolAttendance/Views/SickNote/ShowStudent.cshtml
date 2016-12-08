@@ -1,0 +1,25 @@
+﻿@model SchoolAttendance.ViewModel.SickNote
+<h3>Select Class For Attendance</h3>
+<div class="text-danger">
+    @ViewBag.AttndMsg
+</div>
+
+@using (Html.BeginForm("ShowStudent", "SickNote"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.Label("Student ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.StudentID, new SelectList(ViewBag.StudentList, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Go" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

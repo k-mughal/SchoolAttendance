@@ -1,0 +1,89 @@
+﻿@model  IList<SchoolAttendance.ViewModel.AddAttendance>
+<h3>Attendance for "@ViewBag.Classname"</h3>
+
+@using (Html.BeginForm("AddAttendance", "AddAttendance", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+     
+            <th>
+                @Html.Label("ID")
+            </th>
+            <th>
+                @Html.Label("First Name")
+            </th>
+            <th>
+                @Html.Label("Last Name")
+            </th>
+            <th>
+            </th>
+        </tr>
+        @if (Model != null)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var base64 = @Html.DisplayFor(x => x[i].Image64);
+                            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                        }
+                        <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+                    </td>
+                                    
+                    <td>
+                        @Html.DisplayFor(x => x[i].StudentID)
+                        @Html.HiddenFor(x => x[i].StudentID, new { id = "HiddenText" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].FristName)
+                        @Html.HiddenFor(x => x[i].ClassID, new { id = "HiddenText" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].LastName)
+                    </td>
+                    
+                    <td>
+                    <td>
+                    
+                        @Html.CheckBoxFor(x => x[i].IsPresent)
+                        @Html.HiddenFor(x => x[i].IsPresent, new { id = "HiddenText" })
+                    </td>
+           
+                </tr>
+            }
+
+        }
+    </table>
+
+    <div class="col-md-10">
+        <input type="submit" value="Save" />
+    </div>
+
+}
+<script type="text/javascript">
+
+$(document).ready(
+    function()
+    {
+        $('#table th input:checkbox').click(
+            function()
+            {
+                $('#table td input:checkbox').attr('checked', $(this).attr('checked'));
+            }
+        );
+
+        //The following code keeps the 'selectAll' checkbox in sync with
+        //the manual selection of the checkboxes by user. This is an additional usability feature.
+        $('#table tr input:checkbox').click(
+            function()
+            {
+                var checkedCount = $('#table td input:checkbox:checked').length;
+                var totalCount = $('#table td input:checkbox').length;
+                $('#table th input:checkbox').attr('checked', checkedCount === totalCount);
+            }
+        );
+    }
+ );
+</script>

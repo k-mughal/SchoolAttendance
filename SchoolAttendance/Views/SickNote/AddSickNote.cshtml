@@ -1,0 +1,93 @@
+﻿@model  IList<SchoolAttendance.ViewModel.SickNote>
+<h3>Add Sick Note</h3>
+
+@using (Html.BeginForm("AddSickNote", "SickNote", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+                @Html.AntiForgeryToken()
+                <table class="table">
+        <tr>
+            <th>
+                @Html.Label("Student Picture")
+            </th>
+
+            <th>
+                @Html.Label("ID")
+            </th>
+            <th>
+                @Html.Label("First Name")
+            </th>
+            <th>
+                @Html.Label("Last Name")
+            </th>
+            <th>
+                @Html.Label("Class")
+            </th>
+            <th>
+            </th>
+        </tr>
+        @if (Model != null)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @{
+                    var base64 = @Html.DisplayFor(x => x[i].Image64);
+                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                }
+                        <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(x => x[i].StudentID)
+                        @Html.HiddenFor(x => x[i].StudentID, new { id = "HiddenText" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].FristName)
+                     </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => x[i].className)
+                        @Html.HiddenFor(x => x[i].classID , new { id = "HiddenText" })
+                     </td>
+
+
+                </tr>
+                                }
+
+        }
+    </table>
+
+    <br />
+       <div class="form-horizontal">
+           <hr />
+        <div class="form-group">
+            @Html.Label("Note ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model[0].note, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model[0].note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    
+        <div class="form-group">
+            @Html.Label("Attach Report", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <input type="file" id="ImageSickNote" name="ImageSickNote" />
+                @Html.ValidationMessageFor(model => model[0].ImageSickReport)
+            </div>
+        </div>
+         
+  
+            <br />
+           <div class="form-group">
+               <div class="col-md-offset-2 col-md-10">
+                   <input type="submit" value="Save" class="btn btn-default" />
+               </div>
+           </div>
+        
+   </div>
+
+                            }

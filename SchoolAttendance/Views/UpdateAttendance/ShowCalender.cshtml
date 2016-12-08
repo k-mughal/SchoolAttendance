@@ -1,0 +1,55 @@
+﻿<h3>Attendance for   @ViewBag.Class_id</h3>
+<div id="fullcalendar" style="width:65%"></div>
+@section Scripts
+     {
+    <script>
+
+    $(document).ready(function () {
+
+
+        var itemName = "classid";
+        var itemValue = '@ViewBag.Class_id'
+        var dataObj = {};
+        dataObj[itemName] = itemValue;
+        $(function () {
+            $('#fullcalendar').fullCalendar({
+
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    type: 'POST',
+                    right: 'month',
+
+                },
+
+                defaultDate: new Date(),
+
+                //     events: "/MarkAllAttendance/CalenderClassData?classid=",
+
+                events: {
+                    url: '/UpdateAttendance/CalenderClassData',
+
+                    data: dataObj,
+                    background: 'Green'
+
+
+                },
+
+                dayClick: function (date, jsEvent, view) {
+                    var date1 = date.format();
+
+                //    alert('Clicked on: ' + date1);
+                    //  window.location.href = "/home/getSelectedDate/?value=" + date1; // THIS WORKS FINE
+                    window.location = "/UpdateAttendance/UpdateAttendanceCalender?date=" + date1 + "&classid=" + itemValue; // CLASS_ID (NULL)
+
+                    //     $(this).css('background-color', 'red');
+
+                }
+
+            })
+
+        })
+    });
+    </script>
+
+}

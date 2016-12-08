@@ -1,7 +1,25 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Index";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<h2>jQuery fullcalendar demo</h2>
+
+<div id="fullcalendar"></div>
+
+@section Scripts {
+
+    <script type="text/javascript">
+    $(function () {
+        $('#fullcalendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            defaultDate: new Date(),
+            events: "/api/event/"
+        });
+    });
+    </script>
+
+}

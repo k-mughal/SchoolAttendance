@@ -1,0 +1,42 @@
+﻿
+<h3>Select Date to View Medical Report </h3>
+<div id="fullcalendar" style="width:65%"></div>
+@section Scripts
+     {
+    <script>
+        $(document).ready(function () {
+            var itemName = "studentid";
+            var itemValue = '@ViewBag.Student_ID'
+            var dataObj = {};
+            dataObj[itemName] = itemValue;
+            $(function () {
+                $('#fullcalendar').fullCalendar({
+
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        type: 'POST',
+                        right: 'month',
+                    },
+                    defaultDate: new Date(),
+                
+                    events: {
+                        url: '/SickNote/CalenderViewStudentData',
+                        data: dataObj,
+                        background: 'Green'
+                    },
+                    dayClick: function (date, jsEvent, view) {
+                        var date1 = date.format();
+                        //alert('Clicked on: ' + date1);
+                        //  window.location.href = "/home/getSelectedDate/?value=" + date1; // THIS WORKS FINE
+                        window.location = "/SickNote/ViewSickNoteCalenderData?date=" + date1 + "&studentid=" + itemValue; // CLASS_ID (NULL)
+                        //     $(this).css('background-color', 'red');
+                    }
+                })
+            })
+        });
+    </script>
+
+}
+
+

@@ -1,0 +1,75 @@
+﻿@model  IList<SchoolAttendance.ViewModel.SickNote>
+<h3>View Medical Report </h3>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Student Picture")
+        </th>
+
+        <th>
+            @Html.Label("ID")
+        </th>
+        <th>
+            @Html.Label("First Name")
+        </th>
+        <th>
+            @Html.Label("Last Name")
+        </th>
+        <th>
+            @Html.Label("Class")
+        </th>
+        <th>
+            @Html.Label("Comments")
+        </th>
+        <th>
+            @Html.Label("Medical Report")
+        </th>
+        <th>
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>
+                    @{
+                        var base64 = @Html.DisplayFor(x => x[i].Image64);
+                        var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+                </td>
+
+                <td>
+                    @Html.DisplayFor(x => x[i].StudentID)
+                    @Html.HiddenFor(x => x[i].StudentID, new { id = "HiddenText" })
+                </td>
+                <td>
+                    @Html.DisplayFor(x => x[i].FristName)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => x[i].LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => x[i].className)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(x => x[i].note)
+                </td>
+
+                <td>
+                    @{
+                        var base64Mdi_Rpt = @Html.DisplayFor(x => x[i].Image64Medi_Rpt);
+                        var imgsrc_mdi_rpt = string.Format("data:image/gif;base64,{0}", base64Mdi_Rpt);
+                    }
+                    <img src="@imgsrc_mdi_rpt" style="max-width:500px;max-height:700px" />
+                </td>
+            </tr>
+                            }
+                        }
+</table>
+<br />
+@Html.ActionLink("Go Back", "ViewSickNoteCalender", "SickNotes", null)

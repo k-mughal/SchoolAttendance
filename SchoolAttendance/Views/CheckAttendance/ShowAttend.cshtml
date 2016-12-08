@@ -1,0 +1,70 @@
+﻿@model  IEnumerable<SchoolAttendance.ViewModel.AttendanceStats>
+<h3>Attendance Report</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Student Picture ")
+        </th>
+        <th>
+            @Html.Label("ID ")
+        </th>
+        <th>
+            @Html.Label("First Name")
+        </th>
+        <th>
+            @Html.Label("Last Name")
+        </th>
+        <th>
+            @Html.Label("Attendant")
+        </th>
+        <th>
+            @Html.Label("Total Lectures")
+        </th>
+        <th>
+            @Html.Label("Percentage")
+        </th>
+        <th>
+            @Html.Label("Medical Reports")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                 }
+                <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FristName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAttendant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total_Lectures)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.percentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalMedicalReports)
+            </td>
+        </tr>
+      }
+</table>
+
+<div>
+   @Html.ActionLink("Go Back", "Index", "CheckAttendance", null)
+</div>
