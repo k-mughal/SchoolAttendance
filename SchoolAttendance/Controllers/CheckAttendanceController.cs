@@ -55,8 +55,7 @@ namespace SchoolAttendance.Controllers
                                                        group atnd by atnd.StudentID into grpStdId
                                                join std in db.Students on grpStdId.Key equals std.StudentID
                                                join atd in db.Student_Attendance on std.StudentID equals atd.StudentID
-                                               
-
+                   
                                                        select new AttendanceStats
                                                {
                                                    Image = std.Image,
@@ -83,7 +82,6 @@ namespace SchoolAttendance.Controllers
                     LastName = items.LastName,
                     TotalAttendant = Convert.ToInt32(items.TotalAttendant),
                     Total_Lectures = Convert.ToInt32(items.Total_Lectures),
-                    //percentage = (yourNumber / totalNumber) * 100;
                     percentage = Convert.ToString(Math.Round((Convert.ToDouble(items.TotalAttendant) / Convert.ToDouble(items.Total_Lectures) * 100) , 2)) + "%",
                     TotalMedicalReports = items.TotalMedicalReports
 

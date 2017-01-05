@@ -8,96 +8,94 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm(FormMethod.Post))
+@using (Html.BeginForm("Index", "Student1", FormMethod.Get))
 {
+    <p>
+        Find by student id: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 
-    @Html.AntiForgeryToken()
 
-    <table class="table">
-        <tr>
-            <th>
-                Student Picture
-            </th>
-            <th>
-                Student ID
-            </th>
-            <th>
-                Frist Name
-            </th>
-            <th>
-                Last Name
-            </th>
-            <th>
-                Date of Birth
-            </th>
-            <th>
-                Address
-            </th>
-            <th>
-                Start Date
-            </th>
-            <th>
-                Attending Class
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
+
+        @Html.AntiForgeryToken()
+
+        <table class="table">
             <tr>
-                <td>
-                    @{ 
-                        var base64 = Convert.ToBase64String(item.Image);
-                        var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
-
-                    }
-                    <img src="@imgsrc" style="max-width:100px;max-height:100px"/>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StudentID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FristName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.DOB)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-
-                    @Html.DisplayFor(modelItem => item.Class.Name)
-                </td>
-
-                @*<td>
-
-                        <form action="Create" method="post">
-                            // <input type="checkbox" id="IsPresent" checked="checked" value="true" />
-                            <input type="submit" value="Create" class="btn btn-default" />
-
-                        </form>
-                    </td>*@
-
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
-                </td>
+                <th>
+                    Student Picture
+                </th>
+                <th>
+                    Student ID
+                </th>
+                <th>
+                    Frist Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Date of Birth
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    Attending Class
+                </th>
+                <th></th>
             </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            var base64 = Convert.ToBase64String(item.Image);
+                            var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+
+                        }
+                        <img src="@imgsrc" style="max-width:100px;max-height:100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FristName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DOB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Class.Name)
+                    </td>
+
+                                     <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
+                    </td>
+                </tr>
+                            }
+
+        </table>
+        
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
         }
-
-    </table>
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -12,57 +12,18 @@ namespace SchoolAttendance.Controllers
     {
         private SchoolAttendanceContext db = new SchoolAttendanceContext();
         // GET: Student1
-        
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string searchString)
         {
-
-            //******************************************************
-
-            if (sortOrder != null && searchString != null)
+            if (searchString != null)
             {
-                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-                ViewBag.PhoneSortParm = sortOrder == "PhoneNo" ? "phoneNo_desc" : "PhoneNo";
-                var students = db.Students.Include(s => s.Class).Take(10);
-                //var clients = (from c in db.Clients
-                  //             select c).Take(10);
-
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    students = students.Where(s => s.LastName.Contains(searchString)
-                                           || s.FristName.Contains(searchString));
-                }
-
-                switch (sortOrder)
-                {
-                    case "name_desc":
-                        students = students.OrderByDescending(s => s.LastName);
-                        break;
-                    case "StudentID":
-                        students = students.OrderBy(s => s.StudentID);
-                        break;
-                    case "studendID_desc":
-                        students = students.OrderByDescending(s => s.StudentID);
-                        break;
-                    default:
-                        students = students.OrderBy(s => s.LastName);
-                        break;
-                }
-
+                var students = db.Students.Include(s => s.Class).Where(s => s.StudentID == searchString);
                 return View(students.ToList());
             }
             else
-            {
-                //return View(db.Clients.ToList());
-                 var students = db.Students.Include(s => s.Class);
+            {               
+                var students = db.Students.Include(s => s.Class);
                 return View(students.ToList());
             }
-
-
-            //******************************************************
-            
-
-            //  var students = db.Students.Include(s => s.Class);
-            // return View(students.ToList());
         }
         // GET: Student1/Details/5
         public ActionResult Details(string id)
@@ -93,7 +54,7 @@ namespace SchoolAttendance.Controllers
         public ActionResult Create(Student student, HttpPostedFileBase Image1)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 student.Image = new byte[Image1.ContentLength];
                 Image1.InputStream.Read(student.Image, 0, Image1.ContentLength);
 
@@ -103,12 +64,12 @@ namespace SchoolAttendance.Controllers
                 var now = DateTime.Now;
                 var zeroDate = DateTime.MinValue.AddHours(now.Hour).AddMinutes(now.Minute).AddSeconds(now.Second).AddMilliseconds(now.Millisecond);
                 int uniqueId = (int)(zeroDate.Ticks / 10000);
-                           
-                string _unqid =  _fname.Substring(0, 1).ToUpper() + _lname.Substring(0, 1).ToUpper() + uniqueId;
-                
-                db.Students.Add(student).StudentID = _unqid ;
+
+                string _unqid = _fname.Substring(0, 1).ToUpper() + _lname.Substring(0, 1).ToUpper() + uniqueId;
+
+                db.Students.Add(student).StudentID = _unqid;
                 db.SaveChanges();
-              
+
                 return RedirectToAction("Index");
             }
 

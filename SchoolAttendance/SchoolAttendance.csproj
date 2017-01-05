@@ -211,6 +211,8 @@
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
+    <None Include="Properties\PublishProfiles\smartschoolattendance - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\smartschoolattendance - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
