@@ -1,7 +1,5 @@
 ## Attendance System (Web Application)
 
-- Technologies Used:
-
 - Development Tools: Microsoft Visual Studio, Entity Framework, ASP.NET, C#, HTML, CSS, Bootstrap, LINQ
 - Database and Hosting: SQL Server, Microsoft Azure
 ### Project Overview:
