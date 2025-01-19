@@ -4,7 +4,7 @@
 
 - Development Tools: Microsoft Visual Studio, Entity Framework, ASP.NET, C#, HTML, CSS, Bootstrap, LINQ
 - Database and Hosting: SQL Server, Microsoft Azure
-# Project Overview:
+### Project Overview:
 Designed and developed a robust web application to streamline attendance tracking and monitoring for educational institutions. The system empowers administrators and lecturers to manage attendance efficiently for specific class sections.
 
 - Key Features:
